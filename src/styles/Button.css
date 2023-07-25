@@ -1,0 +1,18 @@
+.btn {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.btn-primary {
+  background-color: rgb(128, 219, 250);
+}
+.btn-secondary {
+  background-color: gray;
+  color: white;
+}
