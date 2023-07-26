@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
   name: z.string().min(3, { message: "custom error msg for atleast 3 char" }),
-  age: z.number().min(12),
+  age: z.number({ invalid_type_error: "This field is required" }).min(12),
 });
 
 type formData = z.infer<typeof schema>;
