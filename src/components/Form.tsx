@@ -1,16 +1,20 @@
 import { useForm, FieldValues } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-interface FormData {
-  name: string;
-  age: number;
-}
+const schema = z.object({
+  name: z.string().min(3, { message: "custom error msg for atleast 3 char" }),
+  age: z.number().min(12),
+});
+
+type formData = z.infer<typeof schema>;
 
 const Form = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<formData>({ resolver: zodResolver(schema) });
   const onSubmit = (data: FieldValues) => {
     console.log(data);
   };
@@ -26,14 +30,9 @@ const Form = () => {
             type="text"
             id="name"
             className="form-control"
-            {...register("name", { required: true, minLength: 3 })}
+            {...register("name")}
           />
-          {errors.name?.type === "required" && (
-            <p className="text-danger">Name is required</p>
-          )}
-          {errors.name?.type === "minLength" && (
-            <p className="text-danger">Name must have alteast 3 alphabets</p>
-          )}
+          {errors.name && <p className="text-danger">{errors.name.message}</p>}
         </div>
         <div className="mb-3">
           <label htmlFor="age" className="form-label">
@@ -43,8 +42,9 @@ const Form = () => {
             type="number"
             id="age"
             className="form-control"
-            {...register("age")}
+            {...register("age", { valueAsNumber: true })}
           />
+          {errors.age && <p className="text-danger">{errors.age.message}</p>}
         </div>
         <button type="submit" className="btn btn-primary">
           Submit
