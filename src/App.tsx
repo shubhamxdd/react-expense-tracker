@@ -7,6 +7,7 @@ import LikeButton from "./components/LikeButton";
 import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
 import Expandable from "./components/Expandable";
+import Form from "./components/Form";
 
 function App() {
   const [showFull, setShowFull] = useState(false);
@@ -64,6 +65,7 @@ function App() {
       <Navbar cartItemsCount={cartItems.length} />
       <Cart cartItem={cartItems} onClear={onClear} />
       <button onClick={handleGameClick}>Click to change </button>
+      <Form />
     </>
   );
 }
