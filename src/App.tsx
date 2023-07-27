@@ -8,6 +8,7 @@ import "./App.css";
 // import Cart from "./components/Cart";
 // import Expandable from "./components/Expandable";
 import Form from "./components/Form";
+import ExpenseTrackerProj from "./components/pages/ExpenseTrackerProj";
 
 function App() {
   // const [showFull, setShowFull] = useState(false);
@@ -41,8 +42,8 @@ function App() {
         beatae sit omnis at. Rem eos laudantium quia rerum dignissimos.
       </Expandable>
       <button onClick={showFullFunc}>
-        Show {showFull ? "Less" : "Full"} Text
-      </button> */}
+      Show {showFull ? "Less" : "Full"} Text
+    </button> */}
       {/* <ListGroup
         items={item}
         title="Cities"
@@ -64,8 +65,9 @@ function App() {
       {/* <Baigan /> */}
       {/* <Navbar cartItemsCount={cartItems.length} />
       <Cart cartItem={cartItems} onClear={onClear} /> 
-      <button onClick={handleGameClick}>Click to change </button> */}
+    <button onClick={handleGameClick}>Click to change </button> */}
       <Form />
+      <ExpenseTrackerProj />
     </>
   );
 }
