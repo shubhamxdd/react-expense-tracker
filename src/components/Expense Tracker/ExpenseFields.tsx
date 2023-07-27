@@ -1,6 +1,7 @@
 import { useForm, FieldValues } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { categories } from "../pages/ExpenseTrackerProj";
 
 const schema = z.object({
   desc: z
@@ -55,9 +56,13 @@ const ExpenseTracker = () => {
           </label>
           <select name="category" id="category" className="form-select">
             <option value="">All Categories</option>
-            <option value="1">Category 1</option>
-            <option value="2">Category 2</option>
-            <option value="3">Category 3</option>
+            {categories.map((category) => {
+              return (
+                <option value={category} key={category}>
+                  {category}
+                </option>
+              );
+            })}
           </select>
         </div>
         <button className="btn btn-primary mb-3">Submit</button>

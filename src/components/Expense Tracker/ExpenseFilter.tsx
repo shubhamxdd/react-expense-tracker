@@ -1,3 +1,4 @@
+import { categories } from "../pages/ExpenseTrackerProj";
 interface Props {
   onSelectCategory: (category: string) => void;
 }
@@ -13,9 +14,13 @@ const ExpenseFilter = ({ onSelectCategory }: Props) => {
           onChange={(event) => onSelectCategory(event.target.value)}
         >
           <option value="">All Categories</option>
-          <option value="1">Category 1</option>
-          <option value="2">Category 2</option>
-          <option value="3">Category 3</option>
+          {categories.map((category) => {
+            return (
+              <option value={category} key={category}>
+                {category}
+              </option>
+            );
+          })}
         </select>
       </div>
     </>
