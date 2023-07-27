@@ -7,8 +7,10 @@ const schema = z.object({
   desc: z
     .string()
     .min(3, { message: "Description must be atleast 3 characters." }),
-  amt: z.number({ required_error: "This field is required." }),
-  category: z.enum(categories),
+  amt: z.number({ invalid_type_error: "This field is required." }),
+  category: z.enum(categories, {
+    errorMap: () => ({ message: "Please select a category." }),
+  }),
 });
 
 type formData = z.infer<typeof schema>;
@@ -59,7 +61,7 @@ const ExpenseTracker = () => {
             className="form-select"
             {...register("category")}
           >
-            <option value="">All Categories</option>
+            <option value=""></option>
             {categories.map((category) => {
               return (
                 <option value={category} key={category}>
@@ -68,6 +70,9 @@ const ExpenseTracker = () => {
               );
             })}
           </select>
+          {errors.category && (
+            <p className="text-danger">{errors.category.message}</p>
+          )}
         </div>
         <button className="btn btn-primary mb-3">Submit</button>
       </form>
