@@ -8,27 +8,9 @@ const ExpenseTrackerProj = () => {
   const [expenses, setExpenses] = useState([
     {
       id: 1,
-      description: "asd",
+      description: "Dummy expense",
       amount: 10,
       category: "First",
-    },
-    {
-      id: 2,
-      description: "second",
-      amount: 14,
-      category: "First",
-    },
-    {
-      id: 3,
-      description: "3rd",
-      amount: 24,
-      category: "Second",
-    },
-    {
-      id: 4,
-      description: "last",
-      amount: 42,
-      category: "Third",
     },
   ]);
 
@@ -37,7 +19,6 @@ const ExpenseTrackerProj = () => {
     : expenses;
 
   const onDelete = (id: number) => {
-    console.log("Deleted id:", id);
     setExpenses(expenses.filter((e) => e.id !== id));
   };
   return (

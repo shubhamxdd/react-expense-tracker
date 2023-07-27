@@ -29,9 +29,6 @@ const ExpenseTracker = ({ onSubmit }: Props) => {
     reset,
     formState: { errors },
   } = useForm<formData>({ resolver: zodResolver(schema) });
-  // const onSubmit = (data: FieldValues) => {
-  //   console.log(data);
-  // };
   return (
     <>
       <h1>ExpenseTracker</h1>
