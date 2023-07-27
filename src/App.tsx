@@ -7,7 +7,7 @@ import "./App.css";
 // import Navbar from "./components/Navbar";
 // import Cart from "./components/Cart";
 // import Expandable from "./components/Expandable";
-import Form from "./components/Form";
+// import Form from "./components/Form";
 import ExpenseTrackerProj from "./components/pages/ExpenseTrackerProj";
 
 function App() {
@@ -66,7 +66,7 @@ function App() {
       {/* <Navbar cartItemsCount={cartItems.length} />
       <Cart cartItem={cartItems} onClear={onClear} /> 
     <button onClick={handleGameClick}>Click to change </button> */}
-      <Form />
+      {/* <Form /> */}
       <ExpenseTrackerProj />
     </>
   );

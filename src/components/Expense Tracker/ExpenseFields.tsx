@@ -2,10 +2,6 @@ import { useForm, FieldValues } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-interface Props {
-  onSelectCategory: (category: string) => void;
-}
-
 const schema = z.object({
   desc: z
     .string()
@@ -16,7 +12,7 @@ const schema = z.object({
 
 type formData = z.infer<typeof schema>;
 
-const ExpenseTracker = ({ onSelectCategory }: Props) => {
+const ExpenseTracker = () => {
   const {
     register,
     handleSubmit,
@@ -57,12 +53,7 @@ const ExpenseTracker = ({ onSelectCategory }: Props) => {
           <label htmlFor="category" className="form-label">
             Category
           </label>
-          <select
-            name="category"
-            id="category"
-            className="form-select"
-            onChange={(event) => onSelectCategory(event.target.value)}
-          >
+          <select name="category" id="category" className="form-select">
             <option value="">All Categories</option>
             <option value="1">Category 1</option>
             <option value="2">Category 2</option>
