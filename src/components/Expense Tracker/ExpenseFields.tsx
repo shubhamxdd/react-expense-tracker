@@ -1,14 +1,14 @@
 import { useForm, FieldValues } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { categories } from "../pages/ExpenseTrackerProj";
+import categories from "../Expense Tracker/categories";
 
 const schema = z.object({
   desc: z
     .string()
     .min(3, { message: "Description must be atleast 3 characters." }),
   amt: z.number({ required_error: "This field is required." }),
-  category: z.string(),
+  category: z.enum(categories),
 });
 
 type formData = z.infer<typeof schema>;
@@ -54,7 +54,11 @@ const ExpenseTracker = () => {
           <label htmlFor="category" className="form-label">
             Category
           </label>
-          <select name="category" id="category" className="form-select">
+          <select
+            id="category"
+            className="form-select"
+            {...register("category")}
+          >
             <option value="">All Categories</option>
             {categories.map((category) => {
               return (
