@@ -9,25 +9,25 @@ const ExpenseTrackerProj = () => {
     {
       id: 1,
       description: "asd",
-      ammount: 10,
+      amount: 10,
       category: "First",
     },
     {
       id: 2,
       description: "second",
-      ammount: 14,
+      amount: 14,
       category: "First",
     },
     {
       id: 3,
       description: "3rd",
-      ammount: 24,
+      amount: 24,
       category: "Second",
     },
     {
       id: 4,
       description: "last",
-      ammount: 42,
+      amount: 42,
       category: "Third",
     },
   ]);

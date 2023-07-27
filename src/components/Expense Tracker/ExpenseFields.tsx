@@ -7,7 +7,7 @@ const schema = z.object({
   desc: z
     .string()
     .min(3, { message: "Description must be atleast 3 characters." }),
-  amt: z.number({ invalid_type_error: "This field is required." }),
+  amount: z.number({ invalid_type_error: "This field is required." }),
   category: z.enum(categories, {
     errorMap: () => ({ message: "Please select a category." }),
   }),
@@ -41,16 +41,16 @@ const ExpenseTracker = () => {
           {errors.desc && <p className="text-danger">{errors.desc.message}</p>}
         </div>
         <div className="mb-3">
-          <label htmlFor="amt" className="form-label">
-            Ammount
+          <label htmlFor="amount" className="form-label">
+            Amount
           </label>
           <input
             type="number"
-            id="amt"
+            id="amount"
             className="form-control"
-            {...register("amt", { valueAsNumber: true })}
+            {...register("amount", { valueAsNumber: true })}
           />
-          {errors.amt && <p className="text-danger">{errors.amt.message}</p>}
+          {errors.amount && <p className="text-danger">{errors.amount.message}</p>}
         </div>
         <div className="mb-3">
           <label htmlFor="category" className="form-label">
