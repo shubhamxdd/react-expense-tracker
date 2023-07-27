@@ -3,8 +3,6 @@ import ExpenseFilter from "../Expense Tracker/ExpenseFilter";
 import ExpenseList from "../Expense Tracker/ExpenseList";
 import { useState } from "react";
 
-export const categories = ["First", "Second", "Third"];
-
 const ExpenseTrackerProj = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [expenses, setExpenses] = useState([
