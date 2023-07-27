@@ -1,13 +1,20 @@
-import { useForm, FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import categories from "../Expense Tracker/categories";
+
+interface Props {
+  onSubmit: (data: formData) => void;
+}
 
 const schema = z.object({
   description: z
     .string()
     .min(3, { message: "Description must be atleast 3 characters." }),
-  amount: z.number({ invalid_type_error: "This field is required." }),
+  amount: z
+    .number({ invalid_type_error: "Amount field is required." })
+    .min(0.01, { message: "Amount should be more than 0.01" })
+    .max(100_000, { message: "Amount should be less than 100,000" }),
   category: z.enum(categories, {
     errorMap: () => ({ message: "Please select a category." }),
   }),
@@ -15,19 +22,25 @@ const schema = z.object({
 
 type formData = z.infer<typeof schema>;
 
-const ExpenseTracker = () => {
+const ExpenseTracker = ({ onSubmit }: Props) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<formData>({ resolver: zodResolver(schema) });
-  const onSubmit = (data: FieldValues) => {
-    console.log(data);
-  };
+  // const onSubmit = (data: FieldValues) => {
+  //   console.log(data);
+  // };
   return (
     <>
       <h1>ExpenseTracker</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={handleSubmit((data) => {
+          onSubmit(data);
+          reset();
+        })}
+      >
         <div className="mb-3">
           <label htmlFor="desc" className="form-label">
             Description
@@ -38,7 +51,9 @@ const ExpenseTracker = () => {
             className="form-control"
             {...register("description")}
           />
-          {errors.description && <p className="text-danger">{errors.description.message}</p>}
+          {errors.description && (
+            <p className="text-danger">{errors.description.message}</p>
+          )}
         </div>
         <div className="mb-3">
           <label htmlFor="amount" className="form-label">
@@ -50,7 +65,9 @@ const ExpenseTracker = () => {
             className="form-control"
             {...register("amount", { valueAsNumber: true })}
           />
-          {errors.amount && <p className="text-danger">{errors.amount.message}</p>}
+          {errors.amount && (
+            <p className="text-danger">{errors.amount.message}</p>
+          )}
         </div>
         <div className="mb-3">
           <label htmlFor="category" className="form-label">
