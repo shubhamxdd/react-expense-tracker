@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import categories from "../Expense Tracker/categories";
 
 const schema = z.object({
-  desc: z
+  description: z
     .string()
     .min(3, { message: "Description must be atleast 3 characters." }),
   amount: z.number({ invalid_type_error: "This field is required." }),
@@ -36,9 +36,9 @@ const ExpenseTracker = () => {
             type="text"
             id="desc"
             className="form-control"
-            {...register("desc")}
+            {...register("description")}
           />
-          {errors.desc && <p className="text-danger">{errors.desc.message}</p>}
+          {errors.description && <p className="text-danger">{errors.description.message}</p>}
         </div>
         <div className="mb-3">
           <label htmlFor="amount" className="form-label">
